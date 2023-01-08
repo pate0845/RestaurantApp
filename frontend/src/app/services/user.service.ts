@@ -1,6 +1,6 @@
 import { HttpClient, JsonpInterceptor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, VirtualTimeScheduler } from 'rxjs';
 import { USER_LOGIN_URL } from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { User } from '../shared/models/User';
@@ -40,6 +40,11 @@ export class UserService {
   }
 
 
+  logout(){
+    this.userSubject.next(new User());
+    localStorage.removeItem(USER_KEY);
+    window.location.reload();
+  }
 
 
   private setUserToLocalStorage(user:User){
