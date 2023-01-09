@@ -50,14 +50,12 @@
   padding: 5px 15px;
   font-size: 18px;
   border-bottom:1px solid #4CAF50;
-
 }
 .form .input .inputBox input[type="submit"] {
   margin-top: 20px;
   box-shadow: -2px -2px 6px rgba(255, 255, 255, 1),
     2px 2px 6px rgba(0, 0, 0, 0.1);
   border-bottom:none;
-
 }
 .form .input .inputBox input[type="submit"]:active {
   color: #006c9c;
