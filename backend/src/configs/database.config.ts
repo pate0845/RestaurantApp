@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 require('dotenv').config();
 
-
+const MONGO_URL='mongodb+srv://rtk-foodmine:YiHoKkQTi5dDTesT@cluster0.ssloo.mongodb.net/foodmine?retryWrites=true&w=majority';
 export const connectDB =  async ()=>{
 
     try{
-        const conn = await mongoose.connect(process.env.MONGO_URL!,{
+        const conn = await mongoose.connect(MONGO_URL,{
             //must add in order to not get any error masseges:
             useUnifiedTopology:true,
             useNewUrlParser: true,
