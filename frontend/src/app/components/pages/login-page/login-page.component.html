@@ -25,6 +25,11 @@
         ></default-button>
       </div>
     </form>
-    <p class="forget">Forgot Password? <a href="#">Click Here</a></p>
+    <div class="forget">
+      New user? &nbsp;
+      <a routerLink="/login" [queryParams]="{returnUrl:returnUrl}">Register Here
+      </a>
+    </div>
   </div>
+
 </div>

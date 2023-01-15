@@ -3,8 +3,9 @@ import { sample_users } from "../data";
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import { FoodModel } from "../models/food.models";
-import { UserModel } from "../models/user.model";
-
+import { User, UserModel } from "../models/user.model";
+import { BAD_REQUEST } from "../constants/http_status";
+import bcrypt from 'bcryptjs';
 
 const router=Router();
 
@@ -29,9 +30,35 @@ router.post("/login",asyncHandler(
     if(user){
         res.send(generateTokenResponse(user));
     }else{
-        res.status(400).send("User name or password not valid");
+        res.status(BAD_REQUEST).send("User name or password not valid");
     }
 }))
+
+
+router.post('/register',asyncHandler(
+    async (req,res)=>{
+        const {name,email,password,address}=req.body;
+        const user= await UserModel.findOne({email});
+        if(user){
+            res.status(BAD_REQUEST).send("User already exist, please login");
+            return;
+        }
+ 
+        const encryptedPassword=await bcrypt.hash(password,10);
+
+        const newUser:User={
+            id:'',
+            name,
+            email:email.toLowerCase(),
+            password:encryptedPassword,
+            address,
+            isAdmin:false
+        }
+
+        const dbUser=await UserModel.create(newUser);
+        res.send(generateTokenResponse(dbUser));
+    }
+))
 
 const generateTokenResponse=(user:any)=>{
     const token=jwt.sign({
