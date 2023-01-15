@@ -1,0 +1,74 @@
+<div class="continer">
+  <div class="card">
+    <div class="card-image">
+      <h2 class="card-heading">
+        <app-title title="Register"></app-title>
+        <small>Let us create your account</small>
+      </h2>
+    </div>
+
+    <form [formGroup]="registerForm" class="card-form">
+      <div class="input">
+        <text-input
+          [control]="fc['name']"
+          [showErrorsWhen]="isSubmitted"
+          [label]="'Name'"
+        ></text-input>
+      </div>
+
+      <div class="input">
+        <text-input
+          [control]="fc['email']"
+          [showErrorsWhen]="isSubmitted"
+          [label]="'Email'"
+        ></text-input>
+      </div>
+
+      <div class="input">
+        <text-input
+          [control]="fc['password']"
+          [showErrorsWhen]="isSubmitted"
+          type="password"
+          [label]="'Password'"
+        ></text-input>
+      </div>
+
+      <div class="input">
+        <text-input
+          [control]="fc['confirmPassword']"
+          [showErrorsWhen]="isSubmitted"
+          type="password"
+          [label]="'Confirm Password'"
+        ></text-input>
+      </div>
+
+      <div class="input">
+        <text-input
+          [control]="fc['address']"
+          [showErrorsWhen]="isSubmitted"
+          [label]="'Address'"
+        ></text-input>
+      </div>
+
+      <div class="action">
+        <default-button
+          type="button"
+          value="Register"
+          (onClick)="submit()"
+        ></default-button>
+      </div>
+    </form>
+
+    <div class="card-info">
+      <p>
+        By signing up you are agreeing to our
+        <a href="#">Terms and Conditions</a>
+      </p>
+    <div class="login">
+      Already a user? &nbsp;
+      <a routerLink="/login" [queryParams]="{returnUrl:returnUrl}">Login Here
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
